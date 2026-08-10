@@ -1,0 +1,30 @@
+@grammar "scry_search"
+@root comparison_ep1e
+@case_insensitive
+@skip TRIVIA
+
+; Must match core's own skip token exactly (name and definition) --
+; discarded at merge time in favor of core's, but required locally to
+; satisfy Aether's own eager per-file @skip validation (the same
+; convention every other kind fragment's own grammar file already
+; follows).
+COMMENT := "#" (!"\n" .)*
+TRIVIA  := (SPACE | COMMENT)*
+
+; lang_spec.md §8.5: `<field> SEARCH <string>` -- core's third
+; extension point, EP1(e) (`comparison_ep1e`, `scry_core`'s own `priv/
+; grammar.aether`, right alongside `select_ep1a`/`body_item_ep1`).
+; `left:predicate_lhs` is core's own dangling reference, reused
+; verbatim -- the exact same three shapes (`call_with_path | call |
+; path`) any other comparison's own left-hand side already accepts,
+; not a narrower shape invented for this one operator (`Scry.Search.
+; Executor` is the thing that then chooses, at execution time, which
+; of those three shapes it actually knows how to resolve -- see its
+; own moduledoc for the current scope limit). `right:STRING`
+; deliberately -- unlike core's own `comparison` alternatives (`right:
+; literal | right_field:path`), `SEARCH`'s own right-hand side is
+; always a fuzzy-match query string, never a field reference or an
+; arbitrary literal, so this fragment doesn't reuse `literal` here.
+comparison_ep1e := left:predicate_lhs KW_SEARCH right:STRING
+
+KW_SEARCH := "search"
