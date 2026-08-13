@@ -40,7 +40,17 @@ defmodule Scry.Search.GrammarParityTest do
      }
      """},
     {"block comment (via a commented-out WITH decl) before a SEARCH query",
-     ";with x = SELECT y { z }\nSELECT articles WHERE content SEARCH \"ml\" { id }"}
+     ";with x = SELECT y { z }\nSELECT articles WHERE content SEARCH \"ml\" { id }"},
+    {"body items separated by a bare newline, no comma (scry_core's own body_list fix)",
+     ~s"""
+     SELECT articles WHERE content SEARCH "ml"
+     {
+         title
+         score: relevance()
+     }
+     """},
+    {"a trailing comma before the closing brace (also part of scry_core's own body_list fix)",
+     ~s[SELECT articles WHERE content SEARCH "ml" { title, score: relevance(), }]}
   ]
 
   for {label, query} <- @queries do

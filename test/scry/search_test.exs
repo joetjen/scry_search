@@ -62,10 +62,15 @@ defmodule Scry.SearchTest do
   end
 
   test "the lang_spec.md §8.5 worked example parses end to end" do
-    # A comma between body items, unlike the spec's own prose (written
-    # GraphQL-style, no separator) -- scry_core's own body_list
-    # production is `head:body_item (COMMA tail:body_item)*`, a real
-    # requirement, not a stylistic choice the prose happens to skip.
+    # A comma between body items here, matching the spec's own prose
+    # style. This is no longer a hard requirement: scry_core's own
+    # body_list production is now right-recursive (`head:body_item
+    # ~body_list_tail trailing_comma:COMMA?`, with `body_list_tail`
+    # accepting either a COMMA or a bare newline as its own separator),
+    # so a bare newline between body items parses too -- see
+    # `Scry.Search.GrammarParityTest`'s own newline-only-separator case.
+    # The comma is kept here anyway since it's still valid and matches
+    # the worked example's own literal text.
     query = """
     SELECT articles
         WHERE published_at >= 2025-01-01 AND category = "research" AND content SEARCH "machine learning"
