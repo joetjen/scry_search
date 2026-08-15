@@ -1,7 +1,7 @@
 defmodule Scry.Search.ExecutorTest do
   @moduledoc """
   `Scry.Search.Executor.run/3` -- `SEARCH`/`relevance()` actually
-  filtering and scoring rows, not just parsing (lang_spec.md §8.5). The
+  filtering and scoring rows, not just parsing. The
   toy token-overlap scorer's own exact arithmetic, composition with
   `GROUP BY` (the pseudo-field-adjacent kinds, `scry_document`/`scry_
   graph`, both needed a real scope limit here; `SEARCH` doesn't, since
@@ -61,7 +61,7 @@ defmodule Scry.Search.ExecutorTest do
     assert {:ok, %Cursor{}} = Scry.Search.Executor.run(query, @conn)
   end
 
-  test "the lang_spec.md §8.5 worked example runs correctly end to end" do
+  test "the worked example runs correctly end to end" do
     rows =
       run!("""
       SELECT articles

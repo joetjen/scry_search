@@ -3,10 +3,10 @@ defmodule Scry.Search.Grammar do
   Compiles this package's own `priv/grammar.aether` fragment, merges it
   with core's own grammar (`Scry.Core.Grammar.compile_unanalyzed/0` +
   `Scry.Core.GrammarCompose.merge/2`), and analyzes the result --
-  `impl_spec.md` §4's own composition mechanics, exercised here by the
-  first real, shipped package to fill `comparison_ep1e`'s EP1(e) infix
-  comparison-tier shape at all (`scry_core`'s own third extension
-  point, added alongside `select_ep1a`/`body_item_ep1`).
+  exercised here by the first real, shipped package to fill
+  `comparison_ep1e`'s EP1(e) infix comparison-tier shape at all
+  (`scry_core`'s own third extension point, added alongside
+  `select_ep1a`/`body_item_ep1`).
 
   **Not** the production parse path -- `Scry.Search.parse/1` calls the
   checked-in, pre-generated `Scry.Search.Grammar.Compiled` (`priv/gen/

@@ -3,8 +3,8 @@ defmodule Scry.Search.GrammarParityTest do
   A permanent regression guard for the equivalence between `Grammar.VM`
   (interpreted) and `Scry.Search.Grammar.Compiled` (native codegen) for
   the *merged* core+search grammar specifically -- composition, not
-  just a single grammar file, is the part `impl_spec.md` itself flags
-  as most likely to surface a real divergence. See `scry_core`'s own
+  just a single grammar file, is the part most likely to surface a real
+  divergence. See `scry_core`'s own
   identical test for the single-grammar case, and every other kind
   package's own identical test for its own extension-point case.
   """
@@ -29,7 +29,7 @@ defmodule Scry.Search.GrammarParityTest do
     {"a plain query with no SEARCH at all", ~s[SELECT articles { title }]},
     {"relevance() as a computed field", ~s[SELECT articles { title, score: relevance() }]},
     {"relevance() in ORDER BY", ~s[SELECT articles ORDER BY relevance() DESC { title }]},
-    {"the lang_spec.md §8.5 worked example",
+    {"the worked example",
      ~s"""
      SELECT articles
          WHERE published_at >= 2025-01-01 AND category = "research" AND content SEARCH "machine learning"

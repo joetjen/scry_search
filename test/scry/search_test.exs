@@ -61,7 +61,7 @@ defmodule Scry.SearchTest do
     assert q.order_bys == [{{:call, "relevance", []}, :desc}]
   end
 
-  test "the lang_spec.md §8.5 worked example parses end to end" do
+  test "the worked example parses end to end" do
     # A comma between body items here, matching the spec's own prose
     # style. This is no longer a hard requirement: scry_core's own
     # body_list production is now right-recursive (`head:body_item

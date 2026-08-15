@@ -3,8 +3,8 @@ defmodule Scry.Search.Actions do
   Turns the *merged* (core + this package's own fragment) parse tree
   into a `%Scry.Core.Query{}`, the exact same target `Scry.Core.Actions`
   produces alone -- this module owns exactly the one rule `priv/
-  grammar.aether` adds (`comparison_ep1e`, lang_spec.md §8.5's `<field>
-  SEARCH <string>`) and delegates every other rule/token straight
+  grammar.aether` adds (`comparison_ep1e`, `<field> SEARCH <string>`)
+  and delegates every other rule/token straight
   through to `Scry.Core.Actions`'s own functions, the same delegation-
   not-composition shape every other kind package's own identical
   module already established (see any one of their own moduledocs for
@@ -45,7 +45,7 @@ defmodule Scry.Search.Actions do
       end
   end
 
-  # lang_spec.md §8.5: `<field> SEARCH <string>`. `left` is core's own
+  # `<field> SEARCH <string>`. `left` is core's own
   # `predicate_lhs` (`call_with_path | call | path`), reused verbatim;
   # `right` is `right_cap.eval.(ctx)` delegating to `Scry.Core.Actions.
   # handle_token(:STRING, ...)` for the actual unescape/decode -- an

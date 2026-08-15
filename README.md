@@ -1,7 +1,6 @@
 # scry_search
 
-The `search` kind for [Scry](https://github.com/joetjen/scry)
-(lang_spec.md §8.5) — a `scry_<kind>` package (impl_spec.md §2), the
+The `search` kind for Scry — a `scry_<kind>` package, the
 first real, shipped package to fill `comparison_ep1e`'s EP1(e) infix
 comparison-tier shape at all (`scry_core`'s own third extension point,
 added alongside `select_ep1a`/`body_item_ep1` specifically to make this
@@ -36,7 +35,7 @@ at all — `Scry.Search.Executor` rewrites every `{:call, "relevance",
 []}` occurrence (in `select`/`order_bys`) into an ordinary field
 reference before `Scry.Core.QueryOps` ever runs, so core never sees the
 literal name `"relevance"` in the query it actually evaluates. This is
-also why `lang_spec.md` §5/§8.5's own `ORDER BY relevance() DESC`
+also why `ORDER BY relevance() DESC`
 needed a real, separate `scry_core` change first: `order_bys` widened
 from a bare field path to a full expression (see `scry_core`'s own
 `CHANGELOG.md`) — without it, that syntax couldn't parse at all,
@@ -68,7 +67,7 @@ is greater than zero.
 **Deliberately out of scope this round, and stated as a clear,
 declined-construct error rather than silently mishandled**: `SEARCH`
 anywhere inside `HAVING` (a per-row match doesn't obviously aggregate
-across a group the way `lang_spec.md`'s own single worked example,
+across a group the way the single worked example,
 `SEARCH` only ever inside `WHERE`, implies); a `SEARCH` left-hand side
 that isn't a bare field path (`predicate_lhs`'s other two shapes,
 `{:call, ...}`/`{:dot, ...}`, parse fine but aren't resolved here).
@@ -79,9 +78,8 @@ case has (a bound query's own value can't itself reference a
 *different*, outer-scoped `WITH` binding, the identical limit core's
 own generic resolution already has).
 
-Source: <https://github.com/joetjen/scry_search>. Specs live in the
-separate [`scry`](https://github.com/joetjen/scry) repository; the
-composition machinery this composes against lives in
+Source: <https://github.com/joetjen/scry_search>. The composition
+machinery this composes against lives in
 [`scry_core`](https://github.com/joetjen/scry_core).
 
 ## Usage

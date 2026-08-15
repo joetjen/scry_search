@@ -11,7 +11,7 @@
 COMMENT := "#" (!"\n" .)*
 TRIVIA  := (SPACE | COMMENT)*
 
-; lang_spec.md §8.5: `<field> SEARCH <string>` -- core's third
+; `<field> SEARCH <string>` -- core's third
 ; extension point, EP1(e) (`comparison_ep1e`, `scry_core`'s own `priv/
 ; grammar.aether`, right alongside `select_ep1a`/`body_item_ep1`).
 ; `left:predicate_lhs` is core's own dangling reference, reused

@@ -1,7 +1,7 @@
 defmodule Scry.Search.Executor do
   @moduledoc """
-  `<field> SEARCH <string>` / `relevance()`'s own execution (lang_spec.md
-  §8.5). A genuinely different shape from every other kind package
+  `<field> SEARCH <string>` / `relevance()`'s own execution. A genuinely
+  different shape from every other kind package
   built so far: `scry_time_series`'s `Executor.run/5` lowers `LAST`
   into an ordinary predicate via a pure AST rewrite (no row access
   needed, since the threshold is a constant computed once against
@@ -95,9 +95,9 @@ defmodule Scry.Search.Executor do
     `ArgumentError` here, not a silent misresolution.
   - `SEARCH` anywhere in `query.havings` is `{:error, {:unsupported,
     {:construct, :search_in_having}}}` -- a per-row match doesn't
-    obviously aggregate across a group the way `lang_spec.md`'s own
-    single worked example (`SEARCH` only ever inside `WHERE`) implies,
-    so this stays a stated "not yet" rather than a guessed semantic.
+    obviously aggregate across a group the way the single worked
+    example (`SEARCH` only ever inside `WHERE`) implies, so this stays
+    a stated "not yet" rather than a guessed semantic.
     A bare `relevance()` call (no `SEARCH` alongside it) is not
     rewritten inside `havings` for the same reason this rewrite is
     scoped to `select`/`order_bys` only -- it reaches core's own

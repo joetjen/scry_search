@@ -1,7 +1,6 @@
 defmodule Scry.Search do
   @moduledoc """
-  The `search` kind for [Scry](https://github.com/joetjen/scry)
-  (lang_spec.md §8.5) -- `<field> SEARCH <string>` only. This
+  The `search` kind for Scry -- `<field> SEARCH <string>` only. This
   package's own README/CHANGELOG have the full scope reasoning.
 
   `parse/1` mirrors `Scry.Core.parse/1`'s own shape and is the intended
@@ -17,8 +16,8 @@ defmodule Scry.Search do
   pass" reasoning, a genuinely different shape from every other kind
   package built so far.
 
-  `relevance()` (lang_spec.md §8.5's other keyword) needs **no grammar
-  contribution at all** -- an ordinary bare call already parses fine
+  `relevance()` (the other keyword this package introduces) needs **no
+  grammar contribution at all** -- an ordinary bare call already parses fine
   through core's own generic `call`/`call_arg` production (confirmed
   directly, the same finding that resolved `scry_time_series`'s own
   `rate(<duration>)`), so this package's own grammar fragment fills

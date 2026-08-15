@@ -53,8 +53,7 @@ defmodule Scry.Search.MixProject do
       # merge/2), and Scry.Search.Executor implements Scry.Core.
       # EngineBehaviour directly, so it's the real dependency, not
       # test-only. Switch to a `~> x.y` Hex requirement once scry_core
-      # is actually published (impl_spec.md's own dependency-versions
-      # convention).
+      # is actually published.
       {:scry_core, path: "../scry_core"},
 
       # === ICHOR (grammar compiler) ===
@@ -110,7 +109,7 @@ defmodule Scry.Search.MixProject do
   end
 
   defp description do
-    "The search kind for Scry (lang_spec.md §8.5) -- grammar fragment and composition " <>
+    "The search kind for Scry -- grammar fragment and composition " <>
       "against scry_core for the SEARCH infix operator (core's third extension point, " <>
       "EP1(e)), plus a real Scry.Search.Executor implementing Scry.Core.EngineBehaviour " <>
       "directly, with a toy token-overlap relevance scorer backing relevance()."
